@@ -345,5 +345,9 @@ $("#btnSearch").ready(function(){
 $("#btnSearch").click(function(){
     main(true)
 });
-
+$("#city").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btnSearch").click();
+    }
+});
 // ------------------------------SECONDWINDOW--------------------------------------
