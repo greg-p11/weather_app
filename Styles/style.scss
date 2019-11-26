@@ -1,0 +1,240 @@
+
+
+// Main colors
+$colordark: #622569;
+$colorlight: #6b5b95;
+
+//Mixins 
+@mixin imgElement($width, $height){
+    width: $width;
+    height: $height;  
+}
+
+//Main Structure
+body{
+    margin:0;
+    padding: 0;
+    background-color: #6b5b75;
+    background-size: cover;    
+}
+
+header{
+    .mainHead{
+        display: block;
+        margin-left:150px;
+        padding-top:30px;
+
+        .title{
+            font-size: 40px;
+            text-shadow: 1px 2px 2px black;
+        }
+    }
+    #navbar {
+        display: flex;
+        position: fixed;
+        justify-content: space-around;
+        top: 40px;
+        right: 100px;
+        background-color: $colordark;
+        z-index: 10;
+        border-radius: 30px;
+        opacity:0.9;  
+
+        .menuLink{
+            padding: 20px;
+            border-radius: 30px; 
+
+            &:hover{  
+                opacity: 0.7;
+                background-color: $colorlight;
+            }
+        }
+        .doDisabled{
+            opacity: 0.5;
+            pointer-events: none;
+            cursor:not-allowed;
+        }
+    }
+}
+
+main{
+    #searchmenu{
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        padding: 5px;
+        margin-top:10px;
+        margin-left:100px;
+        margin-right:100px;
+        background-color: $colordark;
+        border-radius: 30px;
+        opacity: 0.85;
+        justify-content: center;
+        align-items: center;
+
+        #city{
+            border:none;
+            background-color: $colorlight;
+            margin: 15px 0px;
+            margin-left:15px;
+            cursor: pointer;   
+        }
+        #btnSearch{
+            border:none;
+            background-color: #6b5b95;
+            margin: 15px;
+            cursor: pointer;
+            color:snow; 
+            font-family: initial;
+
+            &:active{
+                opacity: 0.8;
+            }
+        }
+    }  
+    #firstContent{
+        display:flex;
+        position: relative;
+        overflow: hidden;
+        justify-content: space-around;
+        margin: 5px 100px;
+        background-color: $colorlight;
+        border-radius: 30px;
+        opacity: 0.85;  
+
+        #div1{
+            display: block;
+            margin:20px;
+
+            .maintemp{
+                display:flex;
+                margin: 10px;          
+            }   
+        }
+        #div2{
+            display: block;   
+            margin:20px;
+
+            .day{
+                display: inline-block; 
+
+                .daypar{
+                    display:block;
+                    margin-right: 5px;
+                    margin-left:5px;                     
+                }
+            }
+        }
+    }
+    #buttonHolder{    
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        margin-top:10px;
+        margin:0px 100px;
+        justify-content: space-around;
+        opacity: 0.85;
+
+        .btnWeather{
+            border:none;
+            padding: 15px;
+            width:50%;
+            cursor: pointer;
+            border-radius: 30px 30px 0px 0px;  
+            font-family: initial;
+
+            &:active{
+                opacity: 0.8;
+                border:none; 
+            } 
+            &:focus {
+                outline: none;
+            }
+        }
+
+        #weather24{
+            background-color: $colorlight;
+        }
+        #weather5{
+            background-color: $colordark;
+        }
+    }
+    #weatherHolder{
+        display:flex;
+        margin:0px 100px;
+        padding:10px;
+        justify-content: space-around;
+        background-color:$colorlight;
+        opacity: 0.85;
+        border-radius:0px 0px 30px 30px;
+
+        .daymin{
+            text-align: center; 
+            border-radius: 30px;
+            padding:7px;  
+        }
+    }
+}
+
+footer{
+    .bottom{
+        position: fixed;
+        bottom:0;
+        display:block;
+        width:auto;
+        background-color: $colordark;
+        opacity: 0.6;
+        border-radius: 10px;
+        font-size: 12px;
+        
+        .botClass{   
+            color: snow;
+            font-weight: bolder;
+            text-decoration: underline;
+            text-shadow: 1px 2px 2px black;
+        }
+    }
+}
+
+.templocation{
+    display:flex;
+    justify-content: flex-start;
+}
+
+
+// Text style
+.navtext{
+    font-style: italic;
+    color: snow;
+    text-decoration: none;  
+}
+.text-temp{
+    font-size: 20px;
+}
+#temp{
+    font-size: 60px;
+}
+.textSearch{
+    font-size: 25px;
+    font-style: italic;
+}
+.text-min{
+    font-size:15px;
+}
+
+//Img style
+.img{ 
+    @include imgElement(50px, 50px);
+    margin-right: 15px;
+}
+.imgBig{
+    @include imgElement(100px, 100px);
+}
+.imgMin{
+    @include imgElement(20px, 20px);
+}
+
+//RWD
+@import "./rwdStyle";
+
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Pogoda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="description" content="Aplikacja do aktualnej pogody oraz pogody na najbliższe 24 godzini lub 5 dni.">
+    <meta name="keywords" content="pogoda, warunki, zachmurzenie, na pięć dni, na 24 godziny">
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="Styles/style.css"/>
+
+    
+</head>
+
+<body>
+    <header>
+            <div class="mainHead">
+                    <h1 class="navtext title">Dzisiejsza Pogoda</h1>
+                </div>
+        <nav id="navbar">           
+            <a href="#firstWindow" class="navtext textSearch menuLink">Dzisiejsza pogoda</a>
+            <a href="#secondWindow" class="navtext textSearch menuLink doDisabled" >Porównanie pogody</a>
+            <a href="" class="navtext textSearch menuLink doDisabled" >Mapa pogodowa</a>
+        </nav>
+    </header>
+
+<main> 
+    <div id="searchmenu">
+          
+        <label class="textSearch navtext" for="city">Wprowadź nazwę miasta: </label>
+        <input id="city" class="textSearch navtext" type="text" placeholder="Miasto"/>
+        <button id="btnSearch" type="button" class="textSearch btnSearch" >Szukaj</button>
+                
+    </div>
+   <div id="smallscreen">
+        <div id="firstContent">
+                <div id="div1">
+                    <div ><h2 id="cityName" class="navtext"></h2></div>
+                    <div id="date" class="text-temp navtext"></div>
+                    <div class="maintemp navtext">
+                        <div id="img"></div>
+                        <div id="temp"></div>
+                    </div>
+                    <div id="descr" class="text-temp navtext"></div>
+                </div>
+
+                <div id="div2">
+                    <div class="day">
+                            <div class="daypar">
+                                <h4 class="navtext">Wilgotność:</h4>
+                                <div class="templocation">
+                                    <img class="img" src="img/humidity.png" alt="humidity">
+                                    <div id="humidity" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="daypar">
+                                <h4 class="navtext">Ciśnienie:</h4>
+                                <div class="templocation">
+                                    <img class="img" src="img/manometr.png" alt="manometr">
+                                    <div id="pressure" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="day">
+                        <div class="daypar">
+                            <h4 class="navtext">Temperatura maksymalna:</h4>
+                            <div class="templocation">
+                                <img class="img" src="img/tempmax.png" alt="tempmax">
+                                <div id="tempMax" class="text-temp navtext"></div>
+                            </div>
+                        </div>
+
+                        <div class="daypar">
+                            <h4 class="navtext">Temperatura minimalna:</h4>
+                            <div class="templocation">
+                                <img class="img" src="img/tempmin.png" alt="tempmin">
+                                <div id="tempMin" class="text-temp navtext"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="day">
+                            <div class="daypar">
+                                <h4 class="navtext">Wschód słońca:</h4>
+                                <div class="templocation">
+                                    <img class="img" src="img/sunrise.png" alt="sunrise">
+                                    <div id="sunrise" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="daypar">
+                                <h4 class="navtext">Zachód słońca:</h4>
+                                <div class="templocation">
+                                    <img class="img" src="img/sunset.png" alt="sunset">
+                                    <div id="sunset" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="day">
+                            <div class="daypar">
+                                <h4 class="navtext">Prędkość wiatru:</h4>
+                                <div class="templocation">
+                                    <img class="img" src="img/velocity.png" alt="velocity">
+                                    <div id="wind" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="daypar">
+                                <h4 class="navtext">Kierunek wiatru:</h4>
+                                <div class="templocation">
+                                    <img class="img" id="navicon" src="img/navigation.png" alt="navigation">
+                                    <div id="windDirection" class="text-temp navtext"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+        </div>
+            <div id="smallscreen2">
+                <div id="buttonHolder">
+                        <button id="weather24" type="button" class="btnWeather navtext text-temp">Pogoda na 24 godziny</button>
+                        <button id="weather5" type="button" class="btnWeather navtext text-temp">Pogoda na 5 dni</button>
+                </div>
+                <div id="weatherHolder"></div>   
+            </div>  
+    </div>
+</main>
+  <footer>
+    <div class="bottom navtext">Icons made by <a href="https://www.freepik.com/?__hstc=57440181.db26c2198f966f8bf8d8453a712f476c.1563133908735.1563551145155.1563817746524.5&__hssc=57440181.3.1563817746524&__hsfp=1234935249" title="Freepik" class="botClass">Freepik</a> from <a href="https://www.flaticon.com/"  title="Flaticon" class="botClass">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" class="botClass">CC 3.0 BY</a></div>
+  </footer>
+  
+
+</body>
+
+
+<script src="scriptweather.js"></script>
+
+</html>

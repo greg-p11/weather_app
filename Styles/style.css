@@ -1,0 +1,392 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #6b5b75;
+  background-size: cover;
+}
+
+header .mainHead {
+  display: block;
+  margin-left: 150px;
+  padding-top: 30px;
+}
+
+header .mainHead .title {
+  font-size: 40px;
+  text-shadow: 1px 2px 2px black;
+}
+
+header #navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  top: 40px;
+  right: 100px;
+  background-color: #622569;
+  z-index: 10;
+  border-radius: 30px;
+  opacity: 0.9;
+}
+
+header #navbar .menuLink {
+  padding: 20px;
+  border-radius: 30px;
+}
+
+header #navbar .menuLink:hover {
+  opacity: 0.7;
+  background-color: #6b5b95;
+}
+
+header #navbar .doDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+main #searchmenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: #622569;
+  border-radius: 30px;
+  opacity: 0.85;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #searchmenu #city {
+  border: none;
+  background-color: #6b5b95;
+  margin: 15px 0px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+main #searchmenu #btnSearch {
+  border: none;
+  background-color: #6b5b95;
+  margin: 15px;
+  cursor: pointer;
+  color: snow;
+  font-family: initial;
+}
+
+main #searchmenu #btnSearch:active {
+  opacity: 0.8;
+}
+
+main #firstContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 5px 100px;
+  background-color: #6b5b95;
+  border-radius: 30px;
+  opacity: 0.85;
+}
+
+main #firstContent #div1 {
+  display: block;
+  margin: 20px;
+}
+
+main #firstContent #div1 .maintemp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px;
+}
+
+main #firstContent #div2 {
+  display: block;
+  margin: 20px;
+}
+
+main #firstContent #div2 .day {
+  display: inline-block;
+}
+
+main #firstContent #div2 .day .daypar {
+  display: block;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+main #buttonHolder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+  margin: 0px 100px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  opacity: 0.85;
+}
+
+main #buttonHolder .btnWeather {
+  border: none;
+  padding: 15px;
+  width: 50%;
+  cursor: pointer;
+  border-radius: 30px 30px 0px 0px;
+  font-family: initial;
+}
+
+main #buttonHolder .btnWeather:active {
+  opacity: 0.8;
+  border: none;
+}
+
+main #buttonHolder .btnWeather:focus {
+  outline: none;
+}
+
+main #buttonHolder #weather24 {
+  background-color: #6b5b95;
+}
+
+main #buttonHolder #weather5 {
+  background-color: #622569;
+}
+
+main #weatherHolder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0px 100px;
+  padding: 10px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #6b5b95;
+  opacity: 0.85;
+  border-radius: 0px 0px 30px 30px;
+}
+
+main #weatherHolder .daymin {
+  text-align: center;
+  border-radius: 30px;
+  padding: 7px;
+}
+
+footer .bottom {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  width: auto;
+  background-color: #622569;
+  opacity: 0.6;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+footer .bottom .botClass {
+  color: snow;
+  font-weight: bolder;
+  text-decoration: underline;
+  text-shadow: 1px 2px 2px black;
+}
+
+.templocation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.navtext {
+  font-style: italic;
+  color: snow;
+  text-decoration: none;
+}
+
+.text-temp {
+  font-size: 20px;
+}
+
+#temp {
+  font-size: 60px;
+}
+
+.textSearch {
+  font-size: 25px;
+  font-style: italic;
+}
+
+.text-min {
+  font-size: 15px;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.imgBig {
+  width: 100px;
+  height: 100px;
+}
+
+.imgMin {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 1250px) {
+  header .mainHead {
+    text-align: center;
+    margin-left: 25px;
+    padding: 0px;
+  }
+  header .mainHead .title {
+    font-size: 30px;
+    margin-top: 0px;
+    padding-top: 5px;
+  }
+  header #navbar {
+    display: none;
+  }
+  main #searchmenu {
+    margin: 2px 15px;
+    padding: 0px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  main #firstContent {
+    margin: 15px;
+  }
+  main #firstContent #div1 {
+    display: block;
+    margin: 20px;
+  }
+  main #firstContent #div1 .maintemp {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 10px;
+  }
+  main #buttonHolder {
+    margin: 0px 15px;
+    overflow: auto;
+  }
+  main #weatherHolder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin: 0px 15px;
+    overflow: auto;
+  }
+  .title {
+    font-size: 30px;
+    margin-top: 0px;
+    padding-top: 5px;
+  }
+  .textSearch {
+    font-size: 20px;
+  }
+  .text-temp {
+    font-size: 15px;
+  }
+  #temp {
+    font-size: 30px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+  input {
+    width: 30vw;
+  }
+  .imgBig {
+    width: 60px;
+    height: 60px;
+  }
+  .img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  header .mainHead {
+    text-align: center;
+    margin-left: 5px;
+    padding: 0px;
+  }
+  header .mainHead .title {
+    font-size: 30px;
+  }
+  header #navbar {
+    display: none;
+  }
+  main #searchmenu {
+    margin: 2px 15px;
+    padding: 0px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  main #smallscreen {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  main #smallscreen #firstContent {
+    display: inline-block;
+    margin: 5px;
+    margin-right: 0px;
+  }
+  main #smallscreen2 {
+    display: block;
+  }
+  main #smallscreen2 #buttonHolder {
+    margin: 0px 5px;
+  }
+  main #smallscreen2 #buttonHolder .btnWeather {
+    border: none;
+    padding: 5px;
+    width: 50%;
+    border-radius: 30px 30px 0px 0px;
+  }
+  main #smallscreen2 #weatherHolder {
+    padding: 0 18px 0 19px;
+    margin: 0px 5px;
+    display: inline-block;
+  }
+  .textSearch {
+    font-size: 20px;
+  }
+  label {
+    display: none;
+  }
+  input {
+    width: 40vw;
+  }
+}
+/*# sourceMappingURL=style.css.map */
