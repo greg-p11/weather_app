@@ -88,7 +88,7 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             
     
             // Nazwa miasta
-            document.getElementById("cityName").innerHTML = (data.name + ", "+ data.sys.country);
+            $("#cityName").html(data.name + ", "+ data.sys.country);
 
             //Data
             var d = new Date((data.dt)*1000);
@@ -101,15 +101,15 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             lochour =lochh.toString();
             var hhh = lochh.getHours();
             var mmm = lochh.getMinutes();
-            document.getElementById("date").innerHTML = ("Data: "+today + "</br>" +"Czas lokalny: " + lochour.substring(16, 21));
+            $("#date").html("Data: "+today + "</br>" +"Czas lokalny: " + lochour.substring(16, 21));
 
             //Temperatura
             var tmp = data.main.temp-273;
             temper = Math.round(tmp);
-            document.getElementById("temp").innerHTML = (temper+"<sup>o</sup>C");
-
+            $("#temp").html(temper+"<sup>o</sup>C");
+            
             //OPIS
-            document.getElementById("descr").innerHTML = ("Opis: "+data.weather[0].description);
+            $("#descr").html("Opis: "+data.weather[0].description);
 
             //SUNRISE i SUNSET
             var rd = new Date((data.sys.sunrise+(data.timezone-7200))*1000);
@@ -129,8 +129,8 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             riseset.push(hourr);
             riseset.push(hours);
 
-            document.getElementById("sunrise").innerHTML = rise;
-            document.getElementById("sunset").innerHTML = set;
+            $("#sunrise").html(rise);
+            $("#sunset").html(set);
 
             //IKONA
              let hour = (hhh+(mmm/100));
@@ -141,10 +141,10 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
              setIcon(icon,hour,hourRise,hourSet, "#img","imgBig", true);
 
             //Wilgotność
-            document.getElementById("humidity").innerHTML = (data.main.humidity+"%")
+            $("#humidity").html(data.main.humidity+"%");
 
             //Ciśnienie
-            document.getElementById("pressure").innerHTML = (data.main.pressure+"hPa")
+            $("#pressure").html(data.main.pressure+"hPa");
 
             //Temperatury MAX i MIN
             var tmpmax = data.main.temp_max-273;
@@ -153,12 +153,12 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             var tmpmin = data.main.temp_min-273;
             tempermin = Math.round(tmpmin);
 
-            document.getElementById("tempMax").innerHTML = (tempermax+"<sup>o</sup>C")
-            document.getElementById("tempMin").innerHTML = (tempermin+"<sup>o</sup>C")
+            $("#tempMax").html(tempermax+"<sup>o</sup>C");
+            $("#tempMin").html(tempermin+"<sup>o</sup>C");
 
             //Wiatr
             var velocity = (Math.round((data.wind.speed*3.6),0));
-            document.getElementById("wind").innerHTML = (velocity +"<sup>km</sup>/<sub>h</sub>")
+            $("#wind").html(velocity +"<sup>km</sup>/<sub>h</sub>");
 
             //Kierunek wiatru
             let direct = (data.wind.deg-225);
@@ -166,28 +166,28 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             $("#navicon").css({'transform' : 'rotate('+ direct +'deg)'});
 
             if(data.wind.deg<=15 || data.wind.deg>=345){
-                document.getElementById("windDirection").innerHTML = ("S")
+                $("#windDirection").html("S");
             }
             else if(data.wind.deg<75 && data.wind.deg>15){
-                document.getElementById("windDirection").innerHTML = ("SW")
+                $("#windDirection").html("SW");
             }
             else if(data.wind.deg<=105 && data.wind.deg>=75){
-                document.getElementById("windDirection").innerHTML = ("W")
+                $("#windDirection").html("W");
             }
             else if(data.wind.deg<165 && data.wind.deg>105){
-                document.getElementById("windDirection").innerHTML = ("NW")
+                $("#windDirection").html("NW");
             }
             else if(data.wind.deg<=195 && data.wind.deg>=165){
-                document.getElementById("windDirection").innerHTML = ("N")
+                $("#windDirection").html("N");
             }
             else if(data.wind.deg<255 && data.wind.deg>195){
-                document.getElementById("windDirection").innerHTML = ("NE")
+                $("#windDirection").html("NE");
             }
             else if(data.wind.deg<=295 && data.wind.deg>=255){
-                document.getElementById("windDirection").innerHTML = ("E")
+                $("#windDirection").html("E");
             }
             else if(data.wind.deg<345 && data.wind.deg>295){
-                document.getElementById("windDirection").innerHTML = ("SE")
+                $("#windDirection").html("SE");
             }
             city = $("#city").val(null);      
         },
@@ -213,10 +213,7 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
                 $("#weatherHolder").empty();
 
                 let iconids=[];     //<---id 
-                
-
-                let navigids=[];     //<---id 
-                
+                let navigids=[];     //<---id   
 
                 var j=0;
                 for(var i=0; i<x; i+=y){
@@ -248,8 +245,7 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
                             do{
                                 i++;
                                 let hhmm = new Date((data.list[i].dt+(data.city.timezone-7200))*1000);
-                                tmphour =hhmm.getHours();
-                               
+                                tmphour =hhmm.getHours();    
                             }
                             while(tmphour>14 || tmphour<11)
 
