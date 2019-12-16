@@ -1,4 +1,104 @@
+// ------------------------------Navbar--------------------------------------
+var open =true;
+var city;
+var colorVal;
+$("#navBtn").click(function(){
+    showNav(open)
+});
 
+$("#okBtn").click(function(){
+    
+    var valCity=$("#lockCity").val();
+
+    if(valCity==0)
+    {
+        showNav(false);
+    }
+    else
+    {    
+        city = $("#lockCity").val();
+        main(true)
+        localStorage.removeItem('setCity');
+        localStorage.setItem('setCity', city);  
+        showNav(false);
+    }
+});
+
+$("#btn1").click(function(){
+    localStorage.removeItem('setColor');
+    localStorage.setItem('setColor', '1'); 
+    $("#btn1").addClass('active');
+    $("#btn2").removeClass('active');
+    $("#btn3").removeClass('active');
+    pageColor('#622569', '#6b5b95');
+});
+$("#btn2").click(function(){
+    localStorage.removeItem('setColor');
+    localStorage.setItem('setColor', '2'); 
+    $("#btn2").addClass('active');
+    $("#btn1").removeClass('active');
+    $("#btn3").removeClass('active');
+    pageColor('#4d454e', '#75726d');
+});
+$("#btn3").click(function(){
+    localStorage.removeItem('setColor');
+    localStorage.setItem('setColor', '3'); 
+    $("#btn3").addClass('active');
+    $("#btn2").removeClass('active');
+    $("#btn1").removeClass('active');
+    pageColor('#da4fa2', '#d173b5');
+});
+
+const showNav = (a)=>{
+    if(a==true)
+    {
+        $(".navContent").attr({'hidden' : false});
+        open = false;
+        $("#okBtn").attr({'hidden' : false});
+        $(".rotate").addClass("rotated");   
+    }
+    else 
+    {
+        $(".navContent").attr({'hidden' : true});
+        open =true;
+        $("#okBtn").attr({'hidden' : true});
+        $(".rotate").removeClass("rotated");
+    }
+}
+
+$("#btnSearch").ready(function(){
+    
+    city = localStorage.getItem('setCity');
+    if(city==null)
+    {
+        main(false)
+    }  
+    else
+    {
+        main(true)
+    }   
+    colorVal = localStorage.getItem('setColor');
+    if(colorVal==2)
+    {
+        pageColor('#4d454e', '#75726d');
+    }
+    else if(colorVal==3)
+    {
+        pageColor('#da4fa2', '#d173b5');
+    }
+});
+
+$("#btnSearch").click(function(){
+    city = $("#city").val();
+    main(true)
+});
+$("#city").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btnSearch").click();
+    }
+});
+
+// ------------------------------Function to set background and icons--------------------------------------
 const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
 
     if(icon=="Clear"){
@@ -64,17 +164,13 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
      }
 }
 
-
+// ------------------------------Main function--------------------------------------
   const main=(mainBool)=>{
 
-    if(mainBool==true){
-        var city = $("#city").val();
+    if(mainBool==false){
+        city = "Kraków";  
     }
 
-    else{
-        var city = "Libiąż";  
-    }
-    
     riseset =[];
 
     $.ajax({
@@ -85,12 +181,10 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
 
             $("#img").empty();
            
-            
-    
-            // Nazwa miasta
+            // City name
             $("#cityName").html(data.name + ", "+ data.sys.country);
 
-            //Data
+            //Date
             var d = new Date((data.dt)*1000);
             var dd = d.getDate();
             var dm = d.getMonth();
@@ -103,15 +197,15 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             var mmm = lochh.getMinutes();
             $("#date").html("Data: "+today + "</br>" +"Czas lokalny: " + lochour.substring(16, 21));
 
-            //Temperatura
+            //Temperature
             var tmp = data.main.temp-273;
             temper = Math.round(tmp);
             $("#temp").html(temper+"<sup>o</sup>C");
             
-            //OPIS
+            //Description
             $("#descr").html("Opis: "+data.weather[0].description);
 
-            //SUNRISE i SUNSET
+            //SUNRISE and SUNSET
             var rd = new Date((data.sys.sunrise+(data.timezone-7200))*1000);
             timer = rd.toString();
             rise = timer.substring(16,21);
@@ -132,7 +226,7 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             $("#sunrise").html(rise);
             $("#sunset").html(set);
 
-            //IKONA
+            //Icon
              let hour = (hhh+(mmm/100));
              let hourRise = (rh+(rm/100));
              let hourSet = (sh+(sm/100));
@@ -140,13 +234,13 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
 
              setIcon(icon,hour,hourRise,hourSet, "#img","imgBig", true);
 
-            //Wilgotność
+            //Humidity
             $("#humidity").html(data.main.humidity+"%");
 
-            //Ciśnienie
+            //Pressure
             $("#pressure").html(data.main.pressure+"hPa");
 
-            //Temperatury MAX i MIN
+            //Temperature MAX and MIN
             var tmpmax = data.main.temp_max-273;
             tempermax = Math.round(tmpmax);
 
@@ -156,11 +250,11 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             $("#tempMax").html(tempermax+"<sup>o</sup>C");
             $("#tempMin").html(tempermin+"<sup>o</sup>C");
 
-            //Wiatr
+            //Wind
             var velocity = (Math.round((data.wind.speed*3.6),0));
             $("#wind").html(velocity +"<sup>km</sup>/<sub>h</sub>");
 
-            //Kierunek wiatru
+            //Wind direction
             let direct = (data.wind.deg-225);
 
             $("#navicon").css({'transform' : 'rotate('+ direct +'deg)'});
@@ -189,13 +283,15 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
             else if(data.wind.deg<345 && data.wind.deg>295){
                 $("#windDirection").html("SE");
             }
-            city = $("#city").val(null);      
+            city = $("#city").val(null);   
+               
         },
 
         error: function(){
             if(mainBool==true){
                 alert("Wprowdź poprawną nazwę miasta.")
-                }       
+                }     
+            localStorage.removeItem('setCity');
         }
     });
 
@@ -204,21 +300,19 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
         method: 'GET',
         url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=8b73082f7b6509b01f99db4dbfae848a',
         success: function(data){
-              
-
-                $("#weather24").css({'background-color' : '#6b5b95'});
-                $("#weather5").css({'background-color' : '#622569'});
-
+            
+            
+    // ------------------------------Function for 24h and 5 days weather--------------------------------------
             const dailyWeather = (x,y,miniNav)=>{
                 $("#weatherHolder").empty();
 
-                let iconids=[];     //<---id 
-                let navigids=[];     //<---id   
+                let iconids=[];     //<---id icon
+                let navigids=[];     //<---id  Wind direction 
 
                 var j=0;
                 for(var i=0; i<x; i+=y){
 
-                    //CZAS
+                    //Time
                     var hhmm = new Date((data.list[i].dt+(data.city.timezone-7200))*1000);
 
 
@@ -265,14 +359,14 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
                     var hhmm = new Date((data.list[i].dt+(data.city.timezone-7200))*1000);
                    
 
-                    //TEMPERATURA
+                    //TEMPERATURE
                     var temper2 = Math.round(data.list[i].main.temp-273);
                     tem=(temper2+"<sup>o</sup>C");
 
-                    //WILGOTNOŚĆ
+                    //Humidity
                     humi = (data.list[i].main.humidity +"%");
 
-                    //WIATR PRĘDKOŚĆ
+                    //Wind speed
                     var velocity2 = (Math.round(data.list[i].wind.speed*3.6));
                     velo = (velocity2 +"<sup>km</sup>/<sub>h</sub>");
 
@@ -281,11 +375,11 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
                     var hour = (hh+(mm/100));
                     var icon = data.list[i].weather[0].main;
 
-                    //Kierunek wiatru
+                    //Wind direction
                     var navigId= ("navicon"+i);
                     navigids.push(navigId);        
 
-                    //APPEND TABELA
+                    //APPEND WeatherHolder
                     var iconId= ("iconid"+i);
                     iconids.push(iconId);
 
@@ -314,36 +408,83 @@ const setIcon = (icon, hour, hourRise, hourSet, id, classImg,  bool)=>{
 
             dailyWeather(8, 1, true)
 
+                
             $("#weather24").click(function(){
-                $("#weather24").css({'background-color' : '#6b5b95'});
-                $("#weather5").css({'background-color' : '#622569'});
+                colorVal = localStorage.getItem('setColor');
+                if(colorVal==2)
+                {
+                    $("#weather5").css({'background-color' : '#4d454e'});
+                    $("#weather24").css({'background-color' : '#75726d'});
+                }
+                
+                else if(colorVal==3)
+                {
+                    $("#weather5").css({'background-color' : '#da4fa2'});
+                    $("#weather24").css({'background-color' : '#d173b5'});
+                }
+                else
+                {
+                    $("#weather24").css({'background-color' : '#6b5b95'});
+                    $("#weather5").css({'background-color' : '#622569'});    
+                }
                 $("#weatherHolder").empty();
                 dailyWeather(8, 1, true)
             });
             $("#weather5").click(function(){
-                $("#weather5").css({'background-color' : '#6b5b95'});
-                $("#weather24").css({'background-color' : '#622569'});
+                colorVal = localStorage.getItem('setColor');
+                if(colorVal==2)
+                {
+                    $("#weather24").css({'background-color' : '#4d454e'});
+                    $("#weather5").css({'background-color' : '#75726d'});
+                }
+                
+                else if(colorVal==3)
+                {
+                    $("#weather24").css({'background-color' : '#da4fa2'});
+                    $("#weather5").css({'background-color' : '#d173b5'});
+                }
+                else
+                {
+                    $("#weather5").css({'background-color' : '#6b5b95'});
+                    $("#weather24").css({'background-color' : '#622569'});
+                }
                 $("#weatherHolder").empty();
                 dailyWeather(40, 8, false)
             });
+            
         },
         error: function(){
-                if(mainBool==true){
-                    alert("Brak danych o pogodzie.")
-                }
+                // if(mainBool==true){
+                //     alert("Brak danych o pogodzie.")
+                // }       
             }
         });
 };
 
-$("#btnSearch").ready(function(){
-    main(false)
-});
-$("#btnSearch").click(function(){
-    main(true)
-});
-$("#city").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#btnSearch").click();
-    }
-});
-// ------------------------------SECONDWINDOW--------------------------------------
+// ------------------------------Function change color--------------------------------------
+const pageColor =(firstColor, secondColor) =>
+{
+    $(".navbar").css({'background-color' : firstColor});
+    $("#navWindow").css({'background-color' : firstColor});
+    $("#searchmenu").css({'background-color' : firstColor});
+    $("#weather5").css({'background-color' : firstColor});
+    $(".bottom").css({'background-color' : firstColor});
+
+    $("#lockCity").css({'background-color' : secondColor});
+    $("#city").css({'background-color' : secondColor});
+    $("#btnSearch").css({'background-color' : secondColor});
+    $("#firstContent").css({'background-color' : secondColor});
+    $("#weather24").css({'background-color' : secondColor});
+    $("#weatherHolder").css({'background-color' : secondColor});
+}
+
+
+
+
+
+
+
+
+
+
+
