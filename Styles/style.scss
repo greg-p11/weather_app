@@ -21,41 +21,61 @@ body{
 header{
     .mainHead{
         display: block;
-        margin-left:150px;
-        padding-top:30px;
-
+        margin-left:8vw;
+        text-align: center;
         .title{
+            
             font-size: 40px;
             text-shadow: 1px 2px 2px black;
+            margin-top:10px;
         }
-    }
-    #navbar {
-        display: flex;
-        position: fixed;
-        justify-content: space-around;
-        top: 40px;
-        right: 100px;
-        background-color: $colordark;
-        z-index: 10;
-        border-radius: 30px;
-        opacity:0.9;  
-
-        .menuLink{
-            padding: 20px;
-            border-radius: 30px; 
-
-            &:hover{  
-                opacity: 0.7;
-                background-color: $colorlight;
-            }
-        }
-        .doDisabled{
-            opacity: 0.5;
-            pointer-events: none;
-            cursor:not-allowed;
-        }
-    }
+    }     
 }
+#slideBar{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    right: 8vw;
+    
+    
+    .navbar {     
+        background-color: $colordark;
+        height:60px;
+        width:60px;    
+        border:none;
+        outline:0;
+        cursor: pointer; 
+        border-radius: 0 0 30px 30px;
+        opacity:0.85; 
+        box-shadow: 0px 0px 3px 3px snow;       
+        &:hover{
+            opacity:0.6;  
+        }
+    }    
+        #navWindow{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: $colordark;
+            text-align: center;
+            opacity: 0.95;
+            height: 35vh;    
+            width:84vw;   
+            padding-top: 15px;
+            margin-left:8vw;
+            #lockCity{
+                border:none;
+                background-color: $colorlight;
+                margin: 15px 0px;
+                margin-left:15px;
+                cursor: pointer;   
+            }
+        }   
+}
+
 
 main{
     #searchmenu{
@@ -64,8 +84,8 @@ main{
         overflow: hidden;
         padding: 5px;
         margin-top:10px;
-        margin-left:100px;
-        margin-right:100px;
+        margin-left:8vw;
+        margin-right:8vw;
         background-color: $colordark;
         border-radius: 30px;
         opacity: 0.85;
@@ -81,14 +101,14 @@ main{
         }
         #btnSearch{
             border:none;
-            background-color: #6b5b95;
+            background-color: $colorlight;
             margin: 15px;
             cursor: pointer;
             color:snow; 
             font-family: initial;
 
-            &:active{
-                opacity: 0.8;
+            &:hover{
+                opacity: 0.9;
             }
         }
     }  
@@ -97,7 +117,7 @@ main{
         position: relative;
         overflow: hidden;
         justify-content: space-around;
-        margin: 5px 100px;
+        margin: 5px 8vw;
         background-color: $colorlight;
         border-radius: 30px;
         opacity: 0.85;  
@@ -131,7 +151,7 @@ main{
         position: relative;
         overflow: hidden;
         margin-top:10px;
-        margin:0px 100px;
+        margin:0px 8vw;
         justify-content: space-around;
         opacity: 0.85;
 
@@ -161,7 +181,7 @@ main{
     }
     #weatherHolder{
         display:flex;
-        margin:0px 100px;
+        margin:0px 8vw;
         padding:10px;
         justify-content: space-around;
         background-color:$colorlight;
@@ -200,7 +220,33 @@ footer{
     display:flex;
     justify-content: flex-start;
 }
-
+#btn1{
+    outline: none;
+    border-radius: 30px;
+    margin:10px;
+    width: 40px;
+    height: 40px;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQoU2NMUs38z0AEYBwKCrOjpxLnmSGgEADU+xV4Jw+nXAAAAABJRU5ErkJggg==);
+}
+#btn2{
+    outline: none;
+    border-radius: 30px;
+    margin:10px;
+    width: 40px;
+    height: 40px;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQoU2P0dfX7z0AEYBwKCkuLconzzBBQCABfqBUFxDXchQAAAABJRU5ErkJggg==);
+}
+#btn3{
+    outline: none;
+    border-radius: 30px;
+    margin:10px;
+    width: 40px;
+    height: 40px;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQoU2O85b/oPwMRgHEoKLxYvJU4zwwBhQC/zRzVU9F75QAAAABJRU5ErkJggg==);
+}
+.active{
+    box-shadow: 0px 0px 8px 8px snow;
+}
 
 // Text style
 .navtext{
@@ -232,7 +278,20 @@ footer{
 }
 .imgMin{
     @include imgElement(20px, 20px);
+    
 }
+.imgNav{
+    font-size:40px;
+    color: snow;   
+}
+.rotated {
+    transform: rotate(180deg);  
+}
+
+
+
+
+
 
 //RWD
 @import "./rwdStyle";

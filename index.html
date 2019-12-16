@@ -9,6 +9,8 @@
     <meta name="description" content="Aplikacja do aktualnej pogody oraz pogody na najbliższe 24 godzini lub 5 dni.">
     <meta name="keywords" content="pogoda, warunki, zachmurzenie, na pięć dni, na 24 godziny">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -22,24 +24,37 @@
 
 <body>
     <header>
-            <div class="mainHead">
-                    <h1 class="navtext title">Dzisiejsza Pogoda</h1>
+        <div class="mainHead">
+            <h1 class="navtext title">Dzisiejsza Pogoda</h1>
+        </div>
+        <div id="slideBar">
+            <div class="navContent" hidden>
+                <div id="navWindow" >
+                    <div><label class="textSearch navtext" for="lockCity">Zapamiętaj miejscowość</label></div >
+                    <div><input id="lockCity" class="textSearch navtext" type="text" placeholder="Miasto"/></div>
+                    <div class="textSearch navtext">Wybierz kolorystykę</div>
+                    <div>
+                        <button id="btn1"></button>
+                        <button id="btn2"></button>
+                        <button id="btn3"></button>
+                    </div>
                 </div>
-        <nav id="navbar">           
-            <a href="#firstWindow" class="navtext textSearch menuLink">Dzisiejsza pogoda</a>
-            <a href="#secondWindow" class="navtext textSearch menuLink doDisabled" >Porównanie pogody</a>
-            <a href="" class="navtext textSearch menuLink doDisabled" >Mapa pogodowa</a>
-        </nav>
+            </div>
+            <div id="navBtns">
+                <button id="okBtn" class="navbar" hidden><i class="fas fa-check imgNav"></i></button>
+                <button id="navBtn" class="navbar"><i class="fas fa-sort-down imgNav rotate"></i></button>
+            </div>
+        </div>
     </header>
 
 <main> 
-    <div id="searchmenu">
+    <nav id="searchmenu">
           
         <label class="textSearch navtext" for="city">Wprowadź nazwę miasta: </label>
         <input id="city" class="textSearch navtext" type="text" placeholder="Miasto"/>
         <button id="btnSearch" type="button" class="textSearch btnSearch" >Szukaj</button>
                 
-    </div>
+    </nav>
    <div id="smallscreen">
         <div id="firstContent">
                 <div id="div1">
